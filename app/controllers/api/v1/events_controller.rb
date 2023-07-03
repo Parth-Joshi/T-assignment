@@ -11,7 +11,7 @@ class Api::V1::EventsController < Api::V1::BaseController
       render json: {
         status_code: 400,
         message: 'Missing required parameters: ' + error,
-        data: ""
+        data: {}
       }, status: 400
       return
     end
@@ -20,7 +20,7 @@ class Api::V1::EventsController < Api::V1::BaseController
       render json: {
         status_code: 400,
         message: "Invalid event_type, Kindly pass #{event_types.join(' / ')} as event_type",
-        data: ""
+        data: {}
       }, status: 400
       return     
     end
@@ -32,7 +32,7 @@ class Api::V1::EventsController < Api::V1::BaseController
       render json: {
         status_code: 400,
         message: "Not able to clock_in, Kindly Clock OUT first",
-        data: ""
+        data: {}
       }, status: 400
       return 
     end
@@ -41,7 +41,7 @@ class Api::V1::EventsController < Api::V1::BaseController
       render json: {
         status_code: 400,
         message: "Not able to clock_out, Kindly Clock IN first",
-        data: ""
+        data: {}
       }, status: 400
       return 
     end
@@ -52,7 +52,11 @@ class Api::V1::EventsController < Api::V1::BaseController
     render json: {
       status_code: 200,
       message: "Successfully logged the #{params[:event_type]} event",
-      data: {}
+      data: {
+        event_logs: user.time_events.order('created_at DESC').map { |time_event| 
+          time_event.created_at.strftime('%d-%m-%Y %H:%M:%S')
+        }
+      }
     }, status: 200
     return
   end
