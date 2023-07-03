@@ -9,4 +9,5 @@
 #
 class User < ApplicationRecord
   has_many :time_events
+  has_many :time_event_pairs
 end
