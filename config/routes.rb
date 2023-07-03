@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'create_time_event' => 'events#create_time_event'
       post 'follow_unfollow_event' => 'events#follow_unfollow_event'
+      get 'get_sleep_records_of_followers' => 'events#sleep_records_of_followers'
     end
   end
 end

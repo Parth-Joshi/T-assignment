@@ -135,4 +135,42 @@ class Api::V1::EventsController < Api::V1::BaseController
     }, status: 200
     return
   end
+
+  def sleep_records_of_followers
+    # API validations START
+    error = ""
+    error += "followee_id " if params[:followee_id].blank?
+    
+    if !error.blank?
+      render json: {
+        status_code: 400,
+        message: 'Missing required parameters: ' + error,
+        data: {}
+      }, status: 400
+      return
+    end
+    # API validations END
+
+    followee = User.find(params[:followee_id])
+
+    today_date = Date.today
+    end_date = today_date - today_date.wday
+    start_date = end_date - 6
+
+    time_event_pairs = TimeEventPair.joins('left join time_events ON time_event_pairs.co_time_event_id = time_events.id').where(user: followee.followers).where('time_event_pairs.time_spent IS NOT NULL').where(time_events: { created_at: start_date..end_date }).order('time_event_pairs.time_spent')
+
+    render json: {
+      status_code: 200,
+      message: "List of sleep records of followers",
+      data: time_event_pairs.map { |time_event_pair| 
+        {
+          user: time_event_pair.user.name,
+          clock_in_at: time_event_pair.ci_time_event.created_at.strftime('%d-%m-%Y %H:%M:%S'),
+          clock_out_at: time_event_pair.co_time_event.created_at.strftime('%d-%m-%Y %H:%M:%S'),
+          sleep_time: ActiveSupport::Duration.build(time_event_pair.time_spent.to_i).inspect
+        }
+      }
+    }, status: 200
+    return
+  end
 end
