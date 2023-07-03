@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'create_time_event' => 'events#create_time_event'
+      post 'follow_unfollow_event' => 'events#follow_unfollow_event'
     end
   end
 end
