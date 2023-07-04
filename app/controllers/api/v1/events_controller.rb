@@ -51,9 +51,9 @@ class Api::V1::EventsController < Api::V1::BaseController
     
     render json: {
       status_code: 200,
-      message: "Successfully logged the #{params[:event_type]} event",
+      message: "Successfully logged the #{params[:event_type]} event. Kindly find #{params[:event_type]} event_logs in data attributes",
       data: {
-        event_logs: user.time_events.order('created_at DESC').map { |time_event| 
+        event_logs: user.time_events.where(event_type: params[:event_type]).order('created_at DESC').map { |time_event| 
           time_event.created_at.strftime('%d-%m-%Y %H:%M:%S')
         }
       }
@@ -103,7 +103,7 @@ class Api::V1::EventsController < Api::V1::BaseController
     if params[:event_type] == 'follow' && followee.following_users.find_by(follower: follower).present?
       render json: {
         status_code: 400,
-        message: "You have already followed the user",
+        message: "You are already following the user",
         data: {}
       }, status: 400
       return 
@@ -112,7 +112,7 @@ class Api::V1::EventsController < Api::V1::BaseController
     if params[:event_type] == 'unfollow' && follower.followed_users.find_by(followee: followee).blank?
       render json: {
         status_code: 400,
-        message: "You have not following the user yet",
+        message: "You are not following the user yet",
         data: {}
       }, status: 400
       return 
@@ -157,11 +157,14 @@ class Api::V1::EventsController < Api::V1::BaseController
     end_date = today_date - today_date.wday
     start_date = end_date - 6
 
-    time_event_pairs = TimeEventPair.joins('left join time_events ON time_event_pairs.co_time_event_id = time_events.id').where(user: followee.followers).where('time_event_pairs.time_spent IS NOT NULL').where(time_events: { created_at: start_date..end_date }).order('time_event_pairs.time_spent')
+    time_event_pairs = TimeEventPair.joins('left join time_events ON time_event_pairs.co_time_event_id = time_events.id').where(
+      user: followee.followers).where('time_event_pairs.time_spent IS NOT NULL').where(
+        time_events: { created_at: start_date..end_date }).includes(
+          :user, :ci_time_event, :co_time_event).order('time_event_pairs.time_spent')
 
     render json: {
       status_code: 200,
-      message: "List of sleep records of followers",
+      message: "List of sleep records of followers from previous week (#{start_date.strftime('%d-%m-%Y')} - #{end_date.strftime('%d-%m-%Y')})",
       data: time_event_pairs.map { |time_event_pair| 
         {
           user: time_event_pair.user.name,

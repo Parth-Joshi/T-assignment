@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "ed2b36d5-0347-4758-9ff4-8ea6a2d5481f",
+		"name": "T-Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6936073"
+	},
+	"item": [
+		{
+			"name": "create_time_event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "current_user_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "event_type",
+							"value": "clock_in",
+							"description": "valid entries: clock_in / clock_out",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/create_time_event",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"create_time_event"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "current_user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "event_type",
+									"value": "clock_in",
+									"description": "valid entries: clock_in / clock_out",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/create_time_event",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"create_time_event"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c81276d0694be650da5ef78746b60343\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "c5c6988c-29dc-4b4d-96a8-7c0695a143ff"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.064693"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.10, sql.active_record;dur=47.15, instantiation.active_record;dur=0.32, process_action.action_controller;dur=61.44"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status_code\": 200,\n    \"message\": \"Successfully logged the clock_in event. Kindly find clock_in event_logs in data attributes\",\n    \"data\": {\n        \"event_logs\": [\n            \"04-07-2023 09:05:36\"\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "follow_unfollow_event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "follower_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "followee_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "event_type",
+							"value": "follow",
+							"description": "valid entries: follow / unfollow",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/follow_unfollow_event",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"follow_unfollow_event"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "follower_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "followee_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "event_type",
+									"value": "follow",
+									"description": "valid entries: follow / unfollow",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/follow_unfollow_event",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"follow_unfollow_event"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89339451ad27566e3db9e4de62d2c3a1\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "12d0c2e7-c7e7-45ff-8320-b94c27d4f722"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.053150"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.16, sql.active_record;dur=42.50, instantiation.active_record;dur=0.12, process_action.action_controller;dur=50.09"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status_code\": 200,\n    \"message\": \"Successfully logged the follow event\",\n    \"data\": {}\n}"
+				}
+			]
+		},
+		{
+			"name": "get_sleep_records_of_followers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "followee_id",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/get_sleep_records_of_followers",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"get_sleep_records_of_followers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "followee_id",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/get_sleep_records_of_followers",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"get_sleep_records_of_followers"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6628e3b9a7c71ac0b47f4ad539e0def6\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "eb605052-3882-47b7-a361-d78d6485c0e5"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.021125"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.34, sql.active_record;dur=7.87, instantiation.active_record;dur=0.69, process_action.action_controller;dur=17.32"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status_code\": 200,\n    \"message\": \"List of sleep records of followers from previous week (26-06-2023 - 02-07-2023)\",\n    \"data\": [\n        {\n            \"user\": \"User 1\",\n            \"clock_in_at\": \"28-06-2023 08:45:28\",\n            \"clock_out_at\": \"28-06-2023 08:46:06\",\n            \"sleep_time\": \"37 seconds\"\n        },\n        {\n            \"user\": \"User 1\",\n            \"clock_in_at\": \"28-06-2023 08:46:34\",\n            \"clock_out_at\": \"28-06-2023 08:47:53\",\n            \"sleep_time\": \"1 minute and 19 seconds\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
